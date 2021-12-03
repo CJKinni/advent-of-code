@@ -1,11 +1,7 @@
 def generate_most_commons(lines)
-    totals = lines[0].map { |_| 0 }
-
-    lines.each do |l|
-        l.each_with_index { |e, i| totals[i] += e.to_i }
+    lines.first.each_with_index.map do |_, i| 
+        lines.count { |l| l[i] == '1' } >= (lines.count / 2.0) ? '1' : '0'
     end
-
-    totals.map { |t| t >= (lines.count / 2.0) ? '1' : '0' }
 end
 
 lines = File.read('input').split("\n").map { |l| l.split('') }

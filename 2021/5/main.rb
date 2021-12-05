@@ -1,5 +1,6 @@
-lines = File.read('input').split("\n")
+require 'range_sort'
 
+lines = File.read('input').split("\n")
 
 coords = lines.map { |l| l.split(' -> ').map { |p| p.split(',').map { |i| i.to_i } }}
 
@@ -18,17 +19,14 @@ coords.each do |coord|
     sx, sy, ex, ey = coord.flatten
     # Vertical
     if sx == ex
-        range =  ((sy..ey).to_a + (ey..sy).to_a)
-        range.each { |y| map[y - ly][sx - lx] += 1 }
+        (sy..ey).sort.each { |y| map[y - ly][sx - lx] += 1 }
     # Horizontal
     elsif sy == ey
-        range = ((sx..ex).to_a + (ex..sx).to_a)
-        range.each { |x| map[sy - ly][x - lx] += 1 }
+        (sx..ex).sort.each { |x| map[sy - ly][x - lx] += 1 }
     end
 end 
 
 puts "1: #{map.flatten.count { |i| i >= 2 }}"
-
 
 map = []
 
@@ -40,12 +38,10 @@ coords.each do |coord|
     sx, sy, ex, ey = coord.flatten
     # Vertical
     if sx == ex
-        range =  ((sy..ey).to_a + (ey..sy).to_a)
-        range.each { |y| map[y - ly][sx - lx] += 1 }
+        (sy..ey).sort.each { |y| map[y - ly][sx - lx] += 1 }
     # Horizontal
     elsif sy == ey
-        range = ((sx..ex).to_a + (ex..sx).to_a)
-        range.each { |x| map[sy - ly][x - lx] += 1 }
+        (sx..ex).sort.each { |x| map[sy - ly][x - lx] += 1 }
     # diagonal
     else 
         miny = sy > ey ? coord[1] : coord[0]

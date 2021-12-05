@@ -15,32 +15,17 @@ map = []
 }
 
 coords.each do |coord|
+    sx, sy, ex, ey = coord.flatten
     # Vertical
-    if coord[0][0] == coord[1][0]
-
-        if coord[0][1] > coord[1][1]
-            min = coord[1][1]
-            max = coord[0][1]
-            coord[0][1] = min
-            coord[1][1] = max
-        end
-        (coord[0][1]..coord[1][1]).each { |y|
-            map[y - ly][coord[0][0] - lx] += 1
-        }
+    if sx == ex
+        range =  ((sy..ey).to_a + (ey..sy).to_a)
+        range.each { |y| map[y - ly][sx - lx] += 1 }
     # Horizontal
-    elsif coord[0][1] == coord[1][1]
-
-        if coord[0][0] > coord[1][0]
-            min = coord[1][0]
-            max = coord[0][0]
-            coord[0][0] = min
-            coord[1][0] = max
-        end
-        (coord[0][0]..coord[1][0]).each { |x|
-            map[coord[0][1] - ly][x - lx] += 1
-        }
+    elsif sy == ey
+        range = ((sx..ex).to_a + (ex..sx).to_a)
+        range.each { |x| map[sy - ly][x - lx] += 1 }
     end
-end
+end 
 
 puts "1: #{map.flatten.count { |i| i >= 2 }}"
 
@@ -52,33 +37,18 @@ map = []
 }
 
 coords.each do |coord|
+    sx, sy, ex, ey = coord.flatten
     # Vertical
-    if coord[0][0] == coord[1][0]
-
-        if coord[0][1] > coord[1][1]
-            min = coord[1][1]
-            max = coord[0][1]
-            coord[0][1] = min
-            coord[1][1] = max
-        end
-        (coord[0][1]..coord[1][1]).each { |y|
-            map[y - ly][coord[0][0] - lx] += 1
-        }
+    if sx == ex
+        range =  ((sy..ey).to_a + (ey..sy).to_a)
+        range.each { |y| map[y - ly][sx - lx] += 1 }
     # Horizontal
-    elsif coord[0][1] == coord[1][1]
-
-        if coord[0][0] > coord[1][0]
-            min = coord[1][0]
-            max = coord[0][0]
-            coord[0][0] = min
-            coord[1][0] = max
-        end
-        (coord[0][0]..coord[1][0]).each { |x|
-            map[coord[0][1] - ly][x - lx] += 1
-        }
+    elsif sy == ey
+        range = ((sx..ex).to_a + (ex..sx).to_a)
+        range.each { |x| map[sy - ly][x - lx] += 1 }
     # diagonal
     else 
-        miny = coord[0][1] > coord[1][1] ? coord[1] : coord[0]
+        miny = sy > ey ? coord[1] : coord[0]
         maxy = (coord - [miny])[0]
 
         upwards = miny[0] < maxy[0]

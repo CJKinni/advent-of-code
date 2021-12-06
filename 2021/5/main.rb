@@ -1,4 +1,4 @@
-require 'range_sort'
+require 'powertools'
 
 lines = File.read('input').split("\n")
 

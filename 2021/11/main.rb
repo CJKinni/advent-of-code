@@ -2,8 +2,7 @@ lines = File.read('input').split("\n")
 
 class Octo
   attr_reader :energy, :flash_count
-
-  attr_writer
+  attr_writer :grid
 
   def initialize(energy, x, y)
     @grid = nil

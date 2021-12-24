@@ -1,0 +1,65 @@
+repa
+add x 10
+repb
+add y 2
+repa
+add x 15
+repb
+add y 16
+repa
+add x 14
+repb
+add y 9
+repa
+add x 15
+repb
+add y 0
+repa
+div z 26
+add x -8
+repb
+add y 1
+repa
+add x 10
+repb
+add y 12
+repa
+div z 26
+add x -16
+repb
+add y 6
+repa
+div z 26
+add x -4
+repb
+add y 6
+repa
+add x 11
+repb
+add y 3
+repa
+div z 26
+add x -3
+repb
+add y 5
+repa
+add x 12
+repb
+add y 9
+repa
+div z 26
+add x -7
+repb
+add y 3
+repa
+div z 26
+add x -15
+repb
+add y 2
+repa
+div z 26
+add x -7
+repb
+add y 3
+mul y x
+add z y

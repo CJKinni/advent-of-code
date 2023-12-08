@@ -39,7 +39,9 @@ while current_node.name != 'ZZZ':
 
 print(f"1: {steps}")
 
+start_nodes = [node for node in nodes.values() if node.name[-1] == 'A']
 current_nodes = [node for node in nodes.values() if node.name[-1] == 'A']
+end_nodes = []
 steps_array = []
 for ni, node in enumerate(current_nodes):
     steps = 0
@@ -53,6 +55,14 @@ for ni, node in enumerate(current_nodes):
         i += 1
         if i >= len(directions):
             i = 0
+    end_nodes.append(current_nodes[ni])
     steps_array.append(steps)
 
 print(f"2: {math.lcm(*steps_array)}")
+
+print(f"start_nodes: {[n.name for n in start_nodes]}")
+print(f"end_nodes:   {[n.name for n in end_nodes]}")
+
+print(f"start_node_paths: {[(n.left, n.right) for n in start_nodes]}")
+print(f"end_node_paths:   {[(n.left, n.right) for n in end_nodes]}")
+print(f"steps_array: {steps_array} (All Odd)")
